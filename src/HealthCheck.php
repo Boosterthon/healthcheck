@@ -118,8 +118,7 @@ class HealthCheck
 
 
     /**
-     * Assembles the overall health facts for the application
-     * Database connection, cache status, etc..
+     * Check to make sure it can connect to the configured database
      *
      * @return void
      */
@@ -150,7 +149,13 @@ class HealthCheck
 
         try {
             $redisConnection  = Redis::connection('default')->ping();
-            $this->setServiceStatus('Redis', 'up');
+            if($redisConnection == 1) {
+                $this->setServiceStatus('Redis', 'up');
+            } else {
+                $this->setStatusCode(503);
+                $this->setStatusMessage('error');
+                $this->setServiceStatus('Redis', 'error', 'Recieved an invalid response of: ' . $redisConnection);
+            }
         } catch (Exception $exception) {
             $this->setStatusCode(503);
             $this->setStatusMessage('error');
