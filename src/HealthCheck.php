@@ -175,18 +175,25 @@ class HealthCheck
     {
 
         $cacheDriver   = $this->getCacheDriver();
-        $expectedValue = Str::random(5);
+        $expectedValue = Str::random(10);
+        $actualValue   = '';
 
-        Cache::driver($cacheDriver)->put('boosterops-health:check', $expectedValue, 10);
+        try {
+            Cache::driver($cacheDriver)->put('boosterops-health:check', $expectedValue, 10);
+            $actualValue = Cache::driver($cacheDriver)->get('boosterops-health:check');
 
-        $actualValue = Cache::driver($cacheDriver)->get('boosterops-health:check');
+            if($actualValue != $expectedValue) {
+                $this->setStatusCode(503);
+                $this->setStatusMessage('error');
+                $this->setServiceStatus('Cache', 'error', 'The cached value does not match the expected value');
+            } else {
+                $this->setServiceStatus('Cache', 'up');
+            }
 
-        if($actualValue != $expectedValue) {
+        } catch (Exception $exception) {
             $this->setStatusCode(503);
             $this->setStatusMessage('error');
-            $this->setServiceStatus('Cache', 'error', 'Could not properly read/write to the cache');
-        } else {
-            $this->setServiceStatus('Cache', 'up');
+            $this->setServiceStatus('Cache', 'error', $exception->getMessage());
         }
 
     }
