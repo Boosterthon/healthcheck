@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/health', function(BoosterOps\HealthCheck\HealthCheck $health) {
+Route::get('/v3/health', function(BoosterOps\HealthCheck\HealthCheck $health) {
     return $health->healthStatus();
 });
 
