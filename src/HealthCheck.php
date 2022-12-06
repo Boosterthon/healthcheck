@@ -334,20 +334,20 @@ class HealthCheck
 
 
     /**
-     * Set the service status details for a given service
-     * and push the details into the main response array
+     * Set the status details for all services
+     * and package them in an array
      *
-     * @return void
+     * @return array
      */
-    private function fullSystemHealthStatus()
+    private function fullSystemHealthStatus(): array
     {
 
         return $statusInfo = [
-            "status"      => $this->getStatusMessage(),
-            "status_code" => $this->getStatusCode(),
-            "info"        => $this->statusPerService,
-            "system_info" => $this->systemMetaData
-        ];
+                "status"      => $this->getStatusMessage(),
+                "status_code" => $this->getStatusCode(),
+                "info"        => $this->statusPerService,
+                "system_info" => $this->systemMetaData
+            ];
 
     }
 
