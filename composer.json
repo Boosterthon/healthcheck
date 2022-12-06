@@ -39,5 +39,6 @@
                 "HealthCheck": "BoosterOps\\HealthCheck\\Facades\\HealthCheck"
             }
         }
-    }
+    },
+    "minimum-stability": "stable"
 }
