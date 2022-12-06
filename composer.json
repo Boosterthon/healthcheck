@@ -4,17 +4,13 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Author Name",
-            "email": "author@email.com",
-            "homepage": "http://author.com"
+            "name": "Matt Parker",
+            "email": "mattparker@choosebooster.com",
+            "homepage": "https://choosebooster.com"
         }
     ],
-    "homepage": "https://github.com/boosterops/healthcheck",
+    "homepage": "https://github.com/Boosterthon/healthcheck",
     "keywords": ["Laravel", "HealthCheck"],
-    "require": {
-        "illuminate/support": "~9",
-        "spatie/laravel-health": "*"
-    },
     "require-dev": {
         "phpunit/phpunit": "~9.0",
         "orchestra/testbench": "~7",
