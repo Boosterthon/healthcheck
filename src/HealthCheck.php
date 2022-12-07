@@ -327,7 +327,7 @@ class HealthCheck
     private function setSystemMetaFact(string $systemItem, string $status, string $message=''): void
     {
 
-        $systemItem = [
+        $systemItemStatus = [
                 $systemItem =>
                 [
                     "status"  => $status,
@@ -335,7 +335,7 @@ class HealthCheck
                 ]
             ];
 
-        array_push($this->systemMetaData, $systemItem);
+        array_push($this->systemMetaData, $systemItemStatus);
 
     }
 
