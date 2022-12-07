@@ -301,7 +301,7 @@ class HealthCheck
     private function setServiceStatus(string $service, string $status, string $message='good'): void
     {
 
-        $systemItemStatus = [
+        $serviceItemStatus = [
                 $service =>
                 [
                     "status"  => $status,
@@ -309,7 +309,7 @@ class HealthCheck
                 ]
             ];
 
-        array_push($this->statusPerService, $systemItemStatus);
+        array_push($this->statusPerService, $serviceItemStatus);
 
     }
 
